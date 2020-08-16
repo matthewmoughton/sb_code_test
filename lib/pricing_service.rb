@@ -31,6 +31,7 @@ class PricingService
       '2_for_1' => two_for_one,
       'half_price' => half_price,
       '1_half_price' => one_half_price,
+      'buy_3_1_free' => buy_three_one_free
     }
   end
 
@@ -48,5 +49,13 @@ class PricingService
 
   def one_half_price
     price / 2.to_f + (price * (count - 1))
+  end
+
+  def buy_three_one_free
+    if count == 4
+      price * 3
+    else
+      standard_price
+    end
   end
 end

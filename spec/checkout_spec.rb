@@ -99,8 +99,8 @@ RSpec.describe Checkout do
         4.times { checkout.scan(:mango) }
       end
 
-      xit 'returns the discounted price for the basket' do
-        pending 'You need to write the code to satisfy this test'
+      it 'returns the discounted price for the basket' do
+        #pending 'You need to write the code to satisfy this test'
         expect(total).to eq(600)
       end
     end

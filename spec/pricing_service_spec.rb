@@ -70,5 +70,22 @@ RSpec.describe PricingService do
         end
       end
     end
+
+    context 'when a buy 3 get 1 free discount is provided' do
+      let(:discount) { 'buy_3_1_free' }
+      let(:count) { 4 }
+
+      it 'applies the discount' do
+        expect(subject).to eql(60)
+      end
+
+      context 'but only 3 items are provided' do
+        let(:count) { 3 }
+
+        it 'doesnt apply the discount' do
+          expect(subject).to eql(60)
+        end
+      end
+    end
   end
 end
