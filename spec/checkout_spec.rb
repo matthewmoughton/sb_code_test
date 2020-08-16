@@ -104,5 +104,16 @@ RSpec.describe Checkout do
         expect(total).to eq(600)
       end
     end
+
+    it 'works with lots of items' do
+      4.times { checkout.scan(:mango) } #600 => 200 * 4 = 800, 3_for_1 discount = 600
+      4.times { checkout.scan(:apple) } #20 => 10 * 4 = 40, 2_for_1 discount = 20
+      4.times { checkout.scan(:banana) } #60 => 30 * 4 = 120, half_price discount = 60
+      4.times { checkout.scan(:orange) } #80 => 20 * 4, no discount = 80
+      4.times { checkout.scan(:pear) } #30 => 15 * 4, 2_for_1 discount = 30
+      4.times { checkout.scan(:pineapple) } #350 => 4 * 100 = 400, 1_half_price discount = 350
+
+      expect(total).to eql(1140.0)
+    end
   end
 end
